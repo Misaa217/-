@@ -8,9 +8,32 @@ public class BirdMovement : MonoBehaviour
 
     void Update()
     {
+        Vector3 movement = Vector3.zero;
+
         if (Keyboard.current != null && Keyboard.current.wKey.isPressed)
         {
-            transform.position += Vector3.forward * moveSpeed * Time.deltaTime;
+            movement += Vector3.forward; 
         }
+
+        if (Keyboard.current.aKey.isPressed)
+        {
+            movement += Vector3.left;
+        }
+
+        if (Keyboard.current.sKey.isPressed)
+        {
+            movement += Vector3.back;
+        }
+
+        if (Keyboard.current.dKey.isPressed)
+        {
+            movement += Vector3.right;
+        }
+
+        movement = movement.normalized;
+
+        transform.position += movement * moveSpeed * Time.deltaTime;
+
+
     }
 }
